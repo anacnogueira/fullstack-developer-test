@@ -1,11 +1,11 @@
 <template>
   <header>
-    <img alt="Vue logo" src="../assets/logo.png" height="50">
-    <p>My Vue.js Application</p>
+    <img alt="Ecommerce logo" src="../assets/logo.png" height="50">
+    <p>My E-commerce</p>
     <nav>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
+        <li><router-link to="/">Lista de Produtos</router-link></li>
+        <li><router-link to="/cadastro">Cadastro</router-link></li>
       </ul>
     </nav>
   </header>
