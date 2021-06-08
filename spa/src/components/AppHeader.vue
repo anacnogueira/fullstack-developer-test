@@ -4,12 +4,25 @@
     <p>My E-commerce</p>
     <nav>
       <ul>
-        <li><router-link to="/">Lista de Produtos</router-link></li>
-        <li><router-link to="/cadastro">Cadastro</router-link></li>
+        <li v-for="route in routes" v-bind:key="route.name">
+          <router-link :to="route.path">{{ route.name }}</router-link>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script lang="ts">
+import { routes } from '../router'
+
+export default {
+  data () {
+    return {
+      routes
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
   header {

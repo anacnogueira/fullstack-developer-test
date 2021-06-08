@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <input type="search" class="filter" placeholder="Filtre pelo nome" v-on:input="filter = $event.target.value">
+    <input type="search" class="filter" placeholder="Filtre pelo nome" @input="filter = $event.target.value">
     <list-product :title="title" :products="filteredProducts"/>
   </div>
 </template>
