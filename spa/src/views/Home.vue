@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <input type="search" class="filter" placeholder="Filtre pelo nome" v-on:input="filter = $event.target.value">
-    <list-product :title="title" :products="products"/>
+    <list-product :title="title" :products="filteredProducts"/>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default defineComponent({
   data () {
     return {
       title: 'Lista de Produtos',
-      products: [] as any,
+      products: [],
       filter: ''
     }
   },
@@ -22,6 +22,16 @@ export default defineComponent({
       .then(res => {
         this.products = res.data.products
       })
+  },
+  computed: {
+    filteredProducts (): string[] {
+      if (this.filter) {
+        const exp = new RegExp(this.filter.trim(), 'i')
+        return this.products.filter(({ name }) => exp.test(name))
+      } else {
+        return this.products
+      }
+    }
   },
   name: 'Home',
   components: {
