@@ -14,3 +14,10 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+  footer {
+    margin-top: 15px;
+    text-align:center;
+  }
+</style>

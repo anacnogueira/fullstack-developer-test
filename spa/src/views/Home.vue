@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <ListProduct :title="title" :products="products"/>
+    <input type="search" class="filter" placeholder="Filtre pelo nome" v-on:input="filter = $event.target.value">
+    <list-product :title="title" :products="products"/>
   </div>
 </template>
 
@@ -12,7 +13,8 @@ export default defineComponent({
   data () {
     return {
       title: 'Lista de Produtos',
-      products: [] as any
+      products: [] as any,
+      filter: ''
     }
   },
   created () {
@@ -23,7 +25,14 @@ export default defineComponent({
   },
   name: 'Home',
   components: {
-    ListProduct
+    'list-product': ListProduct
   }
 })
 </script>
+
+<style scoped type="scss">
+  .filter {
+    display:block;
+    width: 100%;
+  }
+</style>
