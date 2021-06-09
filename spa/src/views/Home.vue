@@ -41,7 +41,12 @@ export default defineComponent({
 </script>
 
 <style scoped type="scss">
+  .home {
+    width: 80%;
+    margin: 0 auto;
+  }
   .filter {
+    margin-top: 20px;
     display:block;
     width: 100%;
   }

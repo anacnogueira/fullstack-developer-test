@@ -33,6 +33,8 @@ export default {
       switch (this.stylized) {
         case 'danger':
           return 'btn-danger'
+        case 'success':
+          return 'btn-success'
         default:
           return 'btn-primary'
       }
@@ -40,7 +42,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
