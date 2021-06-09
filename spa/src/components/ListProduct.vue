@@ -17,7 +17,12 @@
           <th>{{ product.sku }}</th>
           <th>{{ product.name }}</th>
           <th>{{ product.price }}</th>
-          <th><my-button type="button" label="Excluir" @click="remove(product)" /></th>
+          <th><my-button
+            type="button"
+            label="Excluir"
+            @activedButton="remove(product)"
+            :confirmation="true"
+            stylized="danger"/></th>
         </tr>
       </tbody>
     </table>
@@ -39,9 +44,7 @@ export default defineComponent({
   },
   methods: {
     remove (product) {
-      if (confirm('Confirma a exclusão do produto ' + product.name + '?')) {
-        alert('Remover produto ' + product.id)
-      }
+      alert('Remover produto ' + product.id)
     }
   }
 })
