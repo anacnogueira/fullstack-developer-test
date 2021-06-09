@@ -47,8 +47,10 @@ export default {
     save () {
       this.axios
         .post('http://guide-121-api.test/api/products', this.product)
-        .then(() => this.product = new Product(),  err => console.log(err))
-      
+        .then(response => {
+          this.product = new Product()
+        })
+        .catch(error => console.log(error))
     }
   }
 }
