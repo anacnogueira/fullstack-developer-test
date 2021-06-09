@@ -17,4 +17,5 @@ use App\Http\Controllers\ProductsController;
 
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductsController::class, 'index']);
+    Route::post('/', [ProductsController::class, 'store']);
 });
