@@ -1,6 +1,7 @@
 <template>
   <div class="list-products">
     <h1>{{ title }}</h1>
+    <p class="text-center" v-show="message">{{ message }}</p>
     <table class="table">
       <thead>
         <tr>
@@ -35,6 +36,11 @@ import Button from '@/components/Button.vue'
 
 export default defineComponent({
   name: 'ListProduct',
+  data () {
+    return {
+      message: ''
+    }
+  },
   props: {
     title: String,
     products: Object
@@ -44,7 +50,10 @@ export default defineComponent({
   },
   methods: {
     remove (product) {
-      alert('Remover produto ' + product.id)
+      this.axios
+        .delete(`http://guide-121-api.test/api/products${product.id}`)
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
     }
   }
 })
