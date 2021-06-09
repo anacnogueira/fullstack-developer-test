@@ -1,5 +1,6 @@
 <template>
   <div class="list-products">
+    <input type="search" class="filter" placeholder="Filtre pelo nome" @input="filter = $event.target.value">
     <h1>{{ title }}</h1>
     <p class="text-center" v-show="message">{{ message }}</p>
     <table class="table">
@@ -13,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="product in products" v-bind:key="product.id">
+        <tr v-for="product of filteredProducts" v-bind:key="product.id">
           <th scope="row">{{ product.id }}</th>
           <th>{{ product.sku }}</th>
           <th>{{ product.name }}</th>
@@ -30,7 +31,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue'
 import Button from '@/components/Button.vue'
 
@@ -38,12 +39,29 @@ export default defineComponent({
   name: 'ListProduct',
   data () {
     return {
-      message: ''
+      message: '',
+      products: [],
+      filter: ''
     }
   },
   props: {
-    title: String,
-    products: Object
+    title: String
+  },
+  created () {
+    this.axios.get('http://guide-121-api.test/api/products')
+      .then(res => {
+        this.products = res.data.products
+      })
+  },
+  computed: {
+    filteredProducts () {
+      if (this.filter) {
+        const exp = new RegExp(this.filter.trim(), 'i')
+        return this.products.filter(({ name }) => exp.test(name))
+      } else {
+        return this.products
+      }
+    }
   },
   components: {
     'my-button': Button
@@ -51,9 +69,16 @@ export default defineComponent({
   methods: {
     remove (product) {
       this.axios
-        .delete(`http://guide-121-api.test/api/products${product.id}`)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+        .delete(`http://guide-121-api.test/api/products/${product.id}`)
+        .then(response => {
+          this.message = response.data.message
+          const index = this.products.indexOf(product)
+          this.products.splice(index, 1)
+        })
+        .catch(error => {
+          this.message = 'Não foi posssível excluir o produto'
+          console.log(error)
+        })
     }
   }
 })
@@ -64,5 +89,11 @@ export default defineComponent({
 
   .list-products {
     margin-top: 15px;
+  }
+
+  .filter {
+    margin-top: 20px;
+    display:block;
+    width: 100%;
   }
 </style>

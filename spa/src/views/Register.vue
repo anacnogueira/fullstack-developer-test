@@ -30,9 +30,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Button from '../components/Button.vue'
-import Product from '../domain/product/Product'
+import Product from '../domain/product/Product.js'
 
 export default {
   components: {
