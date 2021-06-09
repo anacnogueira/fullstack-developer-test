@@ -33,6 +33,7 @@
 <script>
 import Button from '../components/Button.vue'
 import Product from '../domain/product/Product.js'
+import ProductService from '../domain/product/ProductService.js'
 
 export default {
   components: {
@@ -45,13 +46,16 @@ export default {
   },
   methods: {
     save () {
-      this.axios
-        .post('http://guide-121-api.test/api/products', this.product)
+      this.service
+        .store(this.product)
         .then(response => {
           this.product = new Product()
         })
         .catch(error => console.log(error))
     }
+  },
+  created () {
+    this.service = new ProductService(this.axios, 'products')
   }
 }
 </script>

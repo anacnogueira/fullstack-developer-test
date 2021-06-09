@@ -34,6 +34,7 @@
 <script>
 import { defineComponent } from 'vue'
 import Button from '@/components/Button.vue'
+import ProductService from '../domain/product/ProductService.js'
 
 export default defineComponent({
   name: 'ListProduct',
@@ -48,9 +49,11 @@ export default defineComponent({
     title: String
   },
   created () {
-    this.axios.get('http://guide-121-api.test/api/products')
-      .then(res => {
-        this.products = res.data.products
+    this.service = new ProductService(this.axios, 'products')
+    this.service
+      .list()
+      .then(products => {
+        this.products = products
       })
   },
   computed: {
@@ -68,8 +71,8 @@ export default defineComponent({
   },
   methods: {
     remove (product) {
-      this.axios
-        .delete(`http://guide-121-api.test/api/products/${product.id}`)
+      this.service
+        .delete(product.id)
         .then(response => {
           this.message = response.data.message
           const index = this.products.indexOf(product)
