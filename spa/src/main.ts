@@ -7,6 +7,7 @@ import VueAxios from 'vue-axios'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
-axios.defaults.baseURL = 'http://guide-121-api.test/api/'
+axios.defaults.baseURL = process.env.VUE_APP_ROOT_URL
+console.log(process.env.NODE_ENV)
 
 createApp(App).use(VueAxios, axios).use(store).use(router).mount('#app')

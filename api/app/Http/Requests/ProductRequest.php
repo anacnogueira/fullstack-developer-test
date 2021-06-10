@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class ProductRequest extends FormRequest
 {
@@ -26,7 +27,10 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'sku' => 'required|unique:products,sku',
+            'sku' => [
+                'required',
+                Rule::unique('products')->ignore($this->product->id),
+            ],
             'name' => 'required',
             'price' => 'required|numeric',
             'description' => 'nullable',
