@@ -13,9 +13,9 @@ export default class ProductService {
   store (product) {
     if (product.id) {
       return this._resource
-      .put(`${this._endpoint}/${id}`, product)
+        .put(`${this._endpoint}/${product.id}`, product)
     }
-    
+
     return this._resource
       .post(this._endpoint, product)
   }
