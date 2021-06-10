@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
         return [
             'sku' => [
                 'required',
-                Rule::unique('products')->ignore($this->product->id),
+                Rule::unique('products')->ignore($this->product),
             ],
             'name' => 'required',
             'price' => 'required|numeric',

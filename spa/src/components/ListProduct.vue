@@ -2,7 +2,7 @@
   <div class="list-products">
     <input type="search" class="filter" placeholder="Filtre pelo nome" @input="filter = $event.target.value">
     <h1>{{ title }}</h1>
-    <p class="text-center" v-show="message">{{ message }}</p>
+    <p class="alert alert-danger" v-show="message">{{ message }}</p>
     <table class="table">
       <thead>
         <tr>

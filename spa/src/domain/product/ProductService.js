@@ -46,11 +46,13 @@ export default class ProductService {
       })
   }
 
-  // TODO: Tratar erro
   delete (id) {
     return this._resource
       .delete(`${this._endpoint}/${id}`)
-      .then(() => null)
+      .then(response => {
+        console.log(response.data)
+        return response.data
+      })
       .catch(error => {
         console.log(error)
         throw new Error('Não foi excluir o produto.')
