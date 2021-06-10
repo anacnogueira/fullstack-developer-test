@@ -12,6 +12,11 @@ export const routes: Array<RouteRecordRaw> = [
     path: '/cadastro',
     name: 'Cadastro',
     component: Register
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: Home
   }
 ]
 

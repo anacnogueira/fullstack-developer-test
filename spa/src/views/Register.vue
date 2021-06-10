@@ -24,7 +24,7 @@
 
       <div class="wrap-buttons">
         <my-button label="GRAVAR" type="submit" stylized="success" />
-        <router-link to="/"><my-button label="VOLTAR" type="button" stylized="default"/></router-link>
+        <router-link :to="{ name: 'Home' }"><my-button label="VOLTAR" type="button" stylized="default"/></router-link>
       </div>
     </form>
   </div>
