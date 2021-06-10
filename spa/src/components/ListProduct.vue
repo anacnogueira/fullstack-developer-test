@@ -11,6 +11,7 @@
           <th scope="col">Nome</th>
           <th scope="col">Preço</th>
           <th>&nbsp;</th>
+          <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
@@ -19,12 +20,19 @@
           <th>{{ product.sku }}</th>
           <th>{{ product.name }}</th>
           <th>{{ product.price }}</th>
-          <th><my-button
-            type="button"
-            label="Excluir"
-            @activedButton="remove(product)"
-            :confirmation="true"
-            stylized="danger"/></th>
+          <th>
+            <router-link :to="{ name: 'Altera', params: {id: product.id }}">
+              <my-button type="button" label="ALTERAR" />
+            </router-link>
+          </th>
+          <th>
+            <my-button
+              type="button"
+              label="REMOVER"
+              @activedButton="remove(product)"
+              :confirmation="true"
+              stylized="danger"/>
+          </th>
         </tr>
       </tbody>
     </table>

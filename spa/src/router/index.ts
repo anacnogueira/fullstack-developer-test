@@ -9,8 +9,13 @@ export const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/cadastro',
+    path: '/cadastro/',
     name: 'Cadastro',
+    component: Register
+  },
+  {
+    path: '/cadastro/:id',
+    name: 'Altera',
     component: Register
   },
   {

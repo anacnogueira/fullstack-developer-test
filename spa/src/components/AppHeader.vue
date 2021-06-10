@@ -18,7 +18,7 @@ import { routes } from '../router'
 export default {
   data () {
     return {
-      routes: routes.filter(route => route.name !== 'NotFound')
+      routes: routes.filter(route => route.name !== 'NotFound' && route.name !== 'Altera')
     }
   }
 }

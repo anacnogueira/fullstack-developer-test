@@ -33,12 +33,12 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $student = $this->product->create($request->all());
+        $product = $this->product->create($request->all());
  
         return response()->json([
             "success" => true,
             "message" => "Produto criado com sucessso.",
-            "data" => $student
+            "data" => $product
         ]);
     }
 
@@ -50,7 +50,13 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+       
+        return response()->json([
+            "success" => true,
+            "message" => "Producto recuperado com sucesso.",
+            "product" => $product
+        ]);
     }
 
     /**
