@@ -22,8 +22,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        // TODO: Alterar retorno para formato JSON
-        return ['products' => $this->product->all()];   
+        $products = $this->product->all();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Lista de Produtos",
+            "data" => $products
+        ]);   
     }
 
     /**

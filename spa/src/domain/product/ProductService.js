@@ -7,7 +7,9 @@ export default class ProductService {
   list () {
     return this._resource
       .get(this._endpoint)
-      .then(response => response.data.products)
+      .then(response => {
+        return response.data.data
+      })
       .catch(error => {
         console.log(error)
         throw new Error('Não Foi Possível carregar os produtos. Tente mais tarde')
