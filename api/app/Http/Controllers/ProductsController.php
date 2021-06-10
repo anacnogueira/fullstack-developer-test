@@ -22,6 +22,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        // TODO: Alterar retorno para formato JSON
         return ['products' => $this->product->all()];   
     }
 
@@ -66,9 +67,20 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $input = $request->all();
+        $product->sku = $input['sku'];
+        $product->name = $input['name'];
+        $product->price = $input['price'];
+        $product->description = $input['description'];
+        $product->save();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Produto Atualizado com Sucesso.",
+            "data" => $product
+        ]);
     }
 
     /**

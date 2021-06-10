@@ -41,7 +41,8 @@ export default {
   },
   data () {
     return {
-      product: new Product()
+      product: new Product(),
+      id: this.$route.params.id
     }
   },
   methods: {
@@ -56,6 +57,14 @@ export default {
   },
   created () {
     this.service = new ProductService(this.axios, 'products')
+
+    if (this.id) {
+      this.service
+        .show(this.id)
+        .then(product => {
+          this.product = product
+        })
+    }
   }
 }
 </script>
