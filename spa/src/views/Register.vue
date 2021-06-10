@@ -2,7 +2,7 @@
   <div class="register">
     <h1 v-if="product.id">Alteração de produto</h1>
     <h1 v-else>Cadastro de produto</h1>
-
+    <p class="alert alert-danger" v-show="message">{{ message }}</p>
     <Form @submit="save()">
       <div class="form-group">
         <label for="sku">SKU</label>
@@ -50,6 +50,7 @@ export default {
   },
   data () {
     return {
+      message: '',
       product: new Product(),
       id: this.$route.params.id
     }
@@ -83,7 +84,9 @@ export default {
         .then(response => {
           this.$router.push({ name: 'Home' })
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          this.message = error.message
+        })
     }
   },
   created () {
@@ -94,6 +97,9 @@ export default {
         .show(this.id)
         .then(product => {
           this.product = product
+        })
+        .catch(error => {
+          this.message = error.message
         })
     }
   }

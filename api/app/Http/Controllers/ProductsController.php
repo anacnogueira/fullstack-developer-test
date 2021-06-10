@@ -61,7 +61,7 @@ class ProductsController extends Controller
         return response()->json([
             "success" => true,
             "message" => "Producto recuperado com sucesso.",
-            "product" => $product
+            "data" => $product
         ]);
     }
 

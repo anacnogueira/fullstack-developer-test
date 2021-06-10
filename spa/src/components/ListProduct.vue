@@ -90,8 +90,7 @@ export default defineComponent({
           this.products.splice(index, 1)
         })
         .catch(error => {
-          this.message = 'Não foi posssível excluir o produto'
-          console.log(error)
+          this.message = error.message
         })
     }
   }
