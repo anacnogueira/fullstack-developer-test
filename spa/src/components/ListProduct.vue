@@ -63,6 +63,9 @@ export default defineComponent({
       .then(products => {
         this.products = products
       })
+      .catch(error => {
+        this.message = error.message
+      })
   },
   computed: {
     filteredProducts () {
